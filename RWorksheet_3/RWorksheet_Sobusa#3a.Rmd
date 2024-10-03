@@ -1,0 +1,100 @@
+---
+title: "RWorkshee_Sobusa#3a.rmd"
+author: "Nexon Sobusa"
+date: "2024-09-30"
+output: pdf_document
+---
+
+# 1. Using Vectors
+## Part 1a: First 11 letters from LETTERS vector
+first_11_letters <- LETTERS[1:11]
+print(first_11_letters)
+
+## Part 1b: Odd numbered letters
+odd_letters <- LETTERS[seq(1, 26, 2)]
+print(odd_letters)
+
+## Part 1c: Vowels from LETTERS
+vowels <- LETTERS[c(1, 5, 9, 15, 21)]
+print(vowels)
+
+## Part 1d: Last 5 lowercase letters from letters vector
+last_5_letters <- letters[22:26]
+print(last_5_letters)
+
+## Part 1e: Letters between 15 and 24 in lowercase
+subset_letters <- letters[15:24]
+print(subset_letters)
+
+# 2. Working with Temperature Data
+## Part 2a: Character vector for cities
+city <- c("Tuguegarao City", "Manila", "Iloilo City", "Tacloban", "Samal Island", "Davao City")
+print(city)
+
+## Part 2b: Temperature vector
+temp <- c(42, 39, 34, 34, 30, 27)
+print(temp)
+
+## Part 2c: Creating a data frame
+temp_data <- data.frame(City = city, Temperature = temp)
+print(temp_data)
+
+## Part 2d: Renaming columns (already done in Part 2c)
+print(temp_data)
+
+## Part 2e: Print structure of data frame
+str(temp_data)
+
+## Part 2f: Content of row 3 and row 4
+print(temp_data[3:4,])
+
+## Part 2g: City with the highest and lowest temperature
+max_temp_city <- temp_data[which.max(temp_data$Temperature), "City"]
+min_temp_city <- temp_data[which.min(temp_data$Temperature), "City"]
+
+# Use message to print outputs
+message("City with highest temperature: ", max_temp_city)
+message("City with lowest temperature: ", min_temp_city)
+
+# 3. Working with Matrices
+## Part 3a: Create a matrix with values from 1-8 and 11-14
+matrix_data <- matrix(c(1:8, 11:14), nrow=3, ncol=4)
+print(matrix_data)
+
+## Part 3b: Multiply the matrix by 2
+mult_matrix <- matrix_data * 2
+print(mult_matrix)
+
+## Part 3c: Content of row 2
+print(matrix_data[2,])
+
+## Part 3d: Display columns 3 and 4 in rows 1 and 2
+print(matrix_data[1:2, 3:4])
+
+## Part 3e: Display columns 2 and 3 in row 3
+print(matrix_data[3, 2:3])
+
+## Part 3f: Display column 4
+print(matrix_data[, 4])
+
+## Part 3g: Name rows and columns
+rownames(mult_matrix) <- c("isa", "dalawa", "tatlo")
+colnames(mult_matrix) <- c("uno", "dos", "tres", "quatro")
+print(mult_matrix)
+
+## Part 3h: Reshape matrix to 2 columns and 6 rows
+dim(matrix_data) <- c(6, 2)
+print(matrix_data)
+
+# 4. Using Arrays
+## Part 4a: Create a 3D array with repeated values
+array_data <- array(rep(c(1, 2, 3, 6, 7, 8, 9, 0, 3, 4, 5, 1), 2), dim=c(2, 4, 3))
+print(array_data)
+
+## Part 4b: Check array dimensions
+print(dim(array_data))
+
+## Part 4c: Name rows, columns, and dimensions
+dimnames(array_data) <- list(letters[1:2], LETTERS[1:4], c("1st-Dimensional Array", "2nd-Dimensional Array", "3rd-Dimensional Array"))
+print(array_data)
+
