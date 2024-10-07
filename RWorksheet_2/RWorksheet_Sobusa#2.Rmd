@@ -5,7 +5,6 @@ date: "2024-10-02"
 output: pdf_document
 ---
 
-
 # 1.a Creates a sequence from -5 to 5
 operator <- -5:5
 operator
@@ -57,7 +56,7 @@ afe
 
 # 7. Summary statistics for the rivers dataset
 # 7.a Calculates various statistics for the 'rivers' dataset
-data <- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers),sd(rivers), min(rivers), max(rivers))
+data <- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers), sd(rivers), min(rivers), max(rivers))
 data
 
 # 8. Celebrity rankings and manipulations
@@ -77,8 +76,16 @@ pr
 pay
 
 # 8.c Create a CSV file from the table, save it as PowerRanking.csv, and then import it into RStudio.
-power_ranking_data <- read.csv("PowerRanking.csv")
-power_ranking_data
+ranking_data <- data.frame(Rank = pr, Celebrity = celebrity, Pay = pay)
+write.csv(ranking_data, file = "C:/Users/kurts/Desktop/R-Code/RWorksheet_2/PowerRanking.csv", row.names = FALSE)
+
+# Now try to read it
+if (file.exists("C:/Users/kurts/Desktop/R-Code/RWorksheet_2/PowerRanking.csv")) {
+    power_ranking_data <- read.csv("C:/Users/kurts/Desktop/R-Code/RWorksheet_2/PowerRanking.csv")
+    print(power_ranking_data)
+} else {
+    stop("File 'PowerRanking.csv' does not exist.")
+}
 
 # 8.d Access rows 10 to 20, save it as Ranks.RData, and provide the R code for the process.
 subset_ranks <- power_ranking_data[10:20, ]
@@ -87,8 +94,8 @@ load("Ranks.RData")
 subset_ranks
 
 # 9. Download the Hotels-Vienna https://tinyurl.com/Hotels-Vienna
-# 9.a	Import the excel file into your RStudio. What is the R script?
-hotels_vienna_data <- read.xlsx("D:/RStudio/RWorksheet2/hotels-vienna.xlsx")
+# 9.a Import the excel file into your RStudio. What is the R script?
+hotels_vienna_data <- read_excel("C:/Users/kurts/Desktop/R-Code/RWorksheet_2/hotels-vienna.xlsx")
 hotels_vienna_data
 
 # 9.b Checks the dimensions of the hotelsvienna dataset
@@ -108,12 +115,10 @@ first_six_rows
 last_six_rows <- tail(selected_columns)
 last_six_rows
 
-
 # 10. Create a list of ten (10) vegetables you ate during your lifetime. If none, just list down.
 # 10.a Creates a list of vegetables
 vegetables <- c("Carrot", "Broccoli", "Spinach", "Tomato", "Potato", "Cucumber", "Zucchini", "Bell Pepper", "Cauliflower", "Onion")
 vegetables
-
 
 # 10.b Adds more vegetables to the list
 vegetables <- c(vegetables, "Eggplant", "Asparagus")

@@ -1,0 +1,175 @@
+---
+title: "RWorksheet_Delgado#3a.Rmd"
+author: "Clyde Marcelo Delgado"
+date: "2024-09-30"
+output: pdf_document
+---
+```{r, echo=TRUE}
+# 1. Using Vectors
+# Built-in vectors: LETTERS contains uppercase letters and letters contains lowercase letters.
+LETTERS
+letters
+
+# a. Produce a vector that contains the first 11 letters.
+first_11_letters <- LETTERS[1:11]
+first_11_letters
+# Answer: The first 11 letters are "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K"
+
+# b. Produce a vector that contains the odd-numbered letters.
+odd_letters <- LETTERS[seq(1, 26, 2)]
+odd_letters
+# Answer: The odd-numbered letters are "A" "C" "E" "G" "I" "K" "M" "O" "Q" "S" "U" "W" "Y"
+
+# c. Produce a vector that contains the vowels.
+vowels <- LETTERS[c(1, 5, 9, 15, 21)]
+vowels
+# Answer: The vowels are "A" "E" "I" "O" "U"
+
+# d. Produce a vector that contains the last 5 lowercase letters.
+last_5_lowercase <- letters[22:26]
+last_5_lowercase
+# Answer: The last 5 lowercase letters are "v" "w" "x" "y" "z"
+
+# e. Produce a vector that contains lowercase letters from 15th to 24th.
+lowercase_15_to_24 <- letters[15:24]
+lowercase_15_to_24
+# Answer: The lowercase letters from 15th to 24th are "o" "p" "q" "r" "s" "t" "u" "v"
+
+# 2. Create a vector(not a dataframe) with the average temperatures in April for Tuguegarao City, Manila, Iloilo City, Tacloban, Samal Island, and Davao City. The average temperatures in Celcius are 42, 39, 34, 34, 30, and 27 degrees.
+# a. Create a character vector for city names
+city <- c("Tuguegarao City", "Manila", "Iloilo City", "Tacloban", "Samal Island", "Davao City")
+city
+# Answer: The cities are "Tuguegarao City", "Manila", "Iloilo City", "Tacloban", "Samal Island", "Davao City"
+
+# b. Create a numeric vector for temperatures
+temp <- c(42, 39, 34, 34, 30, 27)
+temp
+# Answer: The temperatures are 42, 39, 34, 34, 30, and 27 degrees Celsius
+
+# c. Create a dataframe from city and temperature
+city_temp_df <- data.frame(City = city, Temperature = temp)
+city_temp_df
+# Answer: The dataframe contains the cities and their corresponding temperatures:
+#        City           Temperature
+# 1 Tuguegarao City         42
+# 2 Manila                  39
+# 3 Iloilo City             34
+# 4 Tacloban                34
+# 5 Samal Island            30
+# 6 Davao City              27
+
+# d. Rename the columns
+names(city_temp_df) <- c("City", "Temperature")
+city_temp_df
+# Answer: The columns are renamed to "City" and "Temperature".
+
+# e. Print the structure of the dataframe
+str(city_temp_df)
+# Answer: The structure shows that City is a character vector and Temperature is a numeric vector.
+
+# f. Get the content of row 3 and 4
+city_temp_df[3:4, ]
+# Answer: Row 3 and 4 are:
+#        City      Temperature
+# 3 Iloilo City      34
+# 4 Tacloban         34
+
+# g. Display the city with the highest and lowest temperature
+highest_temp_city <- city_temp_df[which.max(city_temp_df$Temperature), ]
+lowest_temp_city <- city_temp_df[which.min(city_temp_df$Temperature), ]
+highest_temp_city
+lowest_temp_city
+# Answer:
+# The city with the highest temperature is "Tuguegarao City" with 42°C.
+# The city with the lowest temperature is "Davao City" with 27°C.
+
+# 3. Using Matrices
+# a. Create a matrix from 1 to 8 and 11 to 14 with 4 columns and 3 rows
+matrix_data <- matrix(c(1:8, 11:14), nrow = 3, ncol = 4)
+matrix_data
+# Answer: The matrix is:
+#      [,1] [,2] [,3] [,4]
+# [1,]    1    4    7   11
+# [2,]    2    5    8   12
+# [3,]    3    6    9   13
+
+# b. Multiply the matrix by 2
+matrix_mult_2 <- matrix_data * 2
+matrix_mult_2
+# Answer: The matrix multiplied by 2 is:
+#      [,1] [,2] [,3] [,4]
+# [1,]    2    8   14   22
+# [2,]    4   10   16   24
+# [3,]    6   12   18   26
+
+# c. Display the content of row 2
+matrix_data[2, ]
+# Answer: The content of row 2 is 2 5 8 12
+
+# d. Display column 3 and column 4 in row 1 and row 2
+matrix_data[1:2, 3:4]
+# Answer: The content of row 1 and 2 for column 3 and 4 is:
+#      [,1] [,2]
+# [1,]    7   11
+# [2,]    8   12
+
+# e. Display columns 2 and 3 in row 3
+matrix_data[3, 2:3]
+# Answer: The content of row 3 for columns 2 and 3 is 6 9
+
+# f. Display only column 4
+matrix_data[, 4]
+# Answer: The content of column 4 is 11 12 13
+
+# g. Name the rows and columns of the matrix
+rownames(matrix_mult_2) <- c("isa", "dalawa", "tatlo")
+colnames(matrix_mult_2) <- c("uno", "dos", "tres", "quatro")
+matrix_mult_2
+# Answer: The matrix with named rows and columns is:
+#        uno dos tres quatro
+# isa      2    8   14     22
+# dalawa   4   10   16     24
+# tatlo    6   12   18     26
+
+# h. Reshape the matrix to 2 columns and 6 rows
+dim(matrix_data) <- c(6, 2)
+matrix_data
+# Answer: The reshaped matrix is:
+#      [,1] [,2]
+# [1,]    1    4
+# [2,]    2    5
+# [3,]    3    6
+# [4,]    7    8
+# [5,]   11   12
+# [6,]   13    9
+
+# 4. Using Arrays
+# a. Create a 3D array with 4 columns, 2 rows, and repeating values
+array_data <- array(rep(c(1, 2, 3, 6, 7, 8, 9, 0, 3, 4, 5, 1), 2), dim = c(2, 4, 3))
+array_data
+# Answer: The 3D array is:
+# , , 1
+#      [,1] [,2] [,3] [,4]
+# [1,]    1    3    7    3
+# [2,]    2    6    8    4
+# 
+# , , 2
+#      [,1] [,2] [,3] [,4]
+# [1,]    9    0    3    1
+# [2,]    1    5    9    0
+# 
+# , , 3
+#      [,1] [,2] [,3] [,4]
+# [1,]    1    3    7    3
+# [2,]    2    6    8    4
+
+# b. Check the dimensions of the array
+dim(array_data)
+# Answer: The dimensions are 2 rows, 4 columns, and 3 layers
+
+# c. Name the rows and columns of the array
+rownames <- letters[1:2]
+colnames <- LETTERS[1:4]
+dimnames(array_data) <- list(rownames, colnames, c("1st-Dimensional Array", "2nd-Dimensional Array", "3rd-Dimensional Array"))
+array_data
+# Answer: The array with named rows and columns is shown with the dimensions labeled as "1st-Dimensional", "2nd-Dimensional", and "3rd-Dimensional".
