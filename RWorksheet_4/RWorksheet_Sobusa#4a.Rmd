@@ -1,0 +1,77 @@
+---
+title: "RWorksheet_Sobusa#4a.Rmd"
+author: "Nexon Sobusa"
+date: "2024-10-14"
+output: pdf_document
+---
+
+```{r}
+# 1.a Create a data frame.
+Data_Frame <- data.frame (
+  Shoe_Size = c(6.5, 9.0, 8.5, 8.5, 10.5, 7.0, 9.5, 9.0, 13.0, 7.5, 10.5, 8.5, 12.0, 10.5, 13.0, 11.5, 8.5, 5.0, 10.0, 6.5, 7.5, 8.5, 10.5, 8.5, 10.5, 11.0, 9.0, 13.0),
+Height = c(66.0, 68.0, 64.5, 65.0, 70.0, 64.0, 70.0, 71.0, 72.0, 64.0, 74.75, 67.0, 71.0, 71.0, 77.0, 72.0, 59.0, 62.0, 72.0, 66.0, 64.0, 67.0, 73.0, 69.0, 72.0, 70.0, 69.0, 70.0),
+Gender = c("F", "F", "F", "F", "M", "F", "F", "F", "M", "F", "M", "F", "M", "M", "M", "M", "F", "F", "M", "F", "F", "M", "M", "F", "M", "M", "M", "M")
+)
+Data_Frame
+```
+```{r}
+# 1.b	Create a subset by males and females with their corresponding shoe size and height. 
+# Subset for Females
+female_subset <- subset(Data_Frame, Gender == "F", select = c(Shoe_Size, Height))
+female_subset
+
+# Subset for Males
+male_subset <- subset(Data_Frame, Gender == "M", select = c(Shoe_Size, Height))
+male_subset
+```
+```{r}
+# 1.c Find the mean of shoe size and height of the respondents. 
+# Mean of Shoe Size
+mean_shoe_size <- mean(Data_Frame$Shoe_Size)
+mean_shoe_size
+
+# Mean of Height
+mean_height <- mean(Data_Frame$Height)
+mean_height
+```
+```{r}
+# 1.d Is there a relationship between shoe size and height? Why?
+# NO...
+```
+```{r}
+# 2. Construct character vector months to a factor with factor() and assign the result to factor_months_vector.
+# Create the character vector for months
+months_vector <- c("March", "April", "January", "November", "January", "September", "October", "September", "November", "August", "January", "November", "November", "February", "May", "August", "July", "December", "August", "August", "September", "November", "February", "April")
+# Convert months_vector to a factor
+factor_months_vector <- factor(months_vector)
+# Print the factor version
+print(factor_months_vector)
+# Print levels of the factor
+levels(factor_months_vector)
+
+```
+```{r}
+#3.	Then check the summary() of the months_vector and factor_months_vector. | Inter- pret the results of both vectors. Are they both equally useful in this case?
+# Get summary of the original character vector
+summary(months_vector)
+
+# Get summary of the factor vector
+summary(factor_months_vector)
+
+```
+```{r}
+# 4.	Create a vector and factor for the table below.
+# Create the character vector for directions
+directions_vector <- c("East", "West", "North", "West", "West", "West", "North", "North")
+
+# Convert it to a factor with a specified order of levels
+factor_directions_vector <- factor(directions_vector, levels = c("East", "West", "North"))
+
+# Print the factor vector with the specified order of levels
+print(factor_directions_vector)
+```
+```{r}
+# 5. 5.	Enter the data below in Excel with file name = import_march.csv
+read.table(file = "import_march.csv", header=TRUE, sep=",")
+
+```
