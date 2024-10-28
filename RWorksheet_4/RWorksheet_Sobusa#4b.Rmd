@@ -1,0 +1,130 @@
+---
+title: "RWorksheet_Sobusa#4b.Rmd"
+author: "Nexon Sobusa"
+date: "2024-10-28"
+output: pdf_document
+---
+
+```{r}
+# 1. Creating a 5x5 matrix with vectorA = [1,2,3,4,5] and a 5x5 zero matrix
+vectorA <- c(1, 2, 3, 4, 5)
+matrix5x5 <- matrix(0, nrow = 5, ncol = 5)
+for (i in 1:5) {
+  for (j in 1:5) {
+    matrix5x5[i, j] <- abs(vectorA[j] - i)
+  }
+}
+print(matrix5x5)
+```
+
+```{r}
+# 2. Printing "*" using a for loop
+for (i in 1:5) {
+  cat(rep("*", i), "\n")
+}
+```
+
+```{r}
+# 3. Fibonacci sequence up to 500 using repeat and break statements
+n <- as.integer(readline(prompt = "Enter the starting number for the Fibonacci sequence: "))
+
+if (is.na(n) || n < 0) {
+  cat("Please enter a valid positive integer.\n")
+} else {
+  a <- 0  
+  b <- 1
+  repeat {
+    if (a >= n) {  
+      cat(a, " ")
+    }
+    temp <- a + b
+    a <- b
+    b <- temp
+    if (a > 500) break 
+  }
+}
+```
+
+```{r}
+# 4. Importing, subsetting, and plotting gender data
+library(readxl)
+
+dataset <- read.csv("DATA.csv")
+
+male_subset <- subset(dataset, Gender == "M")
+female_subset <- subset(dataset, Gender == "F")
+
+cat("Number of Males:", nrow(male_subset), "\n")
+cat("Number of Females:", nrow(female_subset), "\n")
+```
+```{r}
+# Plotting the gender data
+gender_data <- read.csv("DATA.csv") 
+str(gender_data)
+gender_counts <- table(gender_data$Gender)
+barplot(gender_counts, main = "Gender Distribution", col = c("blue", "pink"),
+        legend = rownames(gender_counts), xlab = "Gender", ylab = "Count")
+
+```
+```{r}
+# 5. Pie chart for Dela Cruz family expenses
+expenses <- c(60, 10, 5, 25)
+labels <- c("Food", "Electricity", "Savings", "Miscellaneous")
+pie(expenses, labels = paste(labels, round(expenses / sum(expenses) * 100), "%"),
+    col = rainbow(length(expenses)), main = "Dela Cruz Family Monthly Expenses")
+```
+
+
+
+```{r}
+# 6. Using the iris dataset
+data(iris)
+str(iris)
+means <- colMeans(iris[, 1:4])
+print(means)
+```
+
+```{r}
+# Pie chart for species distribution
+species_counts <- table(iris$Species)
+pie(species_counts, main = "Species Distribution", col = rainbow(length(species_counts)),
+    labels = names(species_counts))
+```
+
+```{r}
+# Scatterplot of sepal length vs. sepal width by species
+plot(iris$Sepal.Length, iris$Sepal.Width, col = iris$Species,
+     pch = as.numeric(iris$Species), main = "Iris Dataset", 
+     sub = "Sepal Width and Length", xlab = "Sepal Length", ylab = "Sepal Width")
+legend("topright", legend = levels(iris$Species), col = 1:3, pch = 1:3)
+```
+
+```{r}
+# 7. Cleaning and renaming variants in the Alexa data
+library(readxl)
+
+alexa_data <- read_excel("alexa_file.xlsx")
+print(colnames(alexa_data))
+str(alexa_data)
+head(alexa_data)
+
+if ("Variant" %in% colnames(alexa_data)) {  
+  unique_variants <- unique(alexa_data$Variant)  
+  print(unique_variants)
+
+  alexa_data$Variant <- gsub("Black Dot", "BlackDot", alexa_data$Variant)
+  alexa_data$Variant <- gsub("Black Plus", "BlackPlus", alexa_data$Variant)
+  alexa_data$Variant <- gsub("Black Show", "BlackShow", alexa_data$Variant)
+  alexa_data$Variant <- gsub("Black Spot", "BlackSpot", alexa_data$Variant)
+  alexa_data$Variant <- gsub("White Dot", "WhiteDot", alexa_data$Variant)
+  alexa_data$Variant <- gsub("White Plus", "WhitePlus", alexa_data$Variant)
+  alexa_data$Variant <- gsub("White Show", "WhiteShow", alexa_data$Variant)
+  alexa_data$Variant <- gsub("White Spot", "WhiteSpot", alexa_data$Variant)
+
+  cleaned_snippet <- head(alexa_data)
+  print(cleaned_snippet)
+} else {
+  warning("Column 'Variant' does not exist in the data frame.")
+}
+
+```
